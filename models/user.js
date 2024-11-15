@@ -39,7 +39,7 @@ userschema.pre("save",function (next){
     if(!user.isModified("password")) {console.log("not modified password"); return ;}
     
     const hash = createHmac('sha256', secret)
-    .update(user.password)
+    .update(this.password)
     .digest('hex');
     
         this.password=hash;
@@ -58,7 +58,7 @@ userschema.static("matchpassword",async function (email,password) {
         .update(password)
         .digest('hex');
                 
-    if(givenpasswordHash === user.password ) return {user};
+    if(givenpasswordHash === user.password ) return user;
     else return false;
                 
 });

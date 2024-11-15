@@ -1,6 +1,7 @@
 const jwt=require("jsonwebtoken");
 
 function createtokenforuser(user){
+    console.log("user for token",user);
     const payload={
         id : user._id,
         fullname : user.fullname,
