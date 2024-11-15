@@ -15,7 +15,6 @@ const userschema=new mongoose.Schema({
     },
     salt : {
         type : String,
-        required : true,
     },
     password : {
         type :  String,
@@ -32,23 +31,37 @@ const userschema=new mongoose.Schema({
     },
 },{timestamps : true });
 
-const usermodel= mongoose.model("user",userschema);
 
 //basically creating a password hashing so that the password is hidden form the server 
-
 userschema.pre("save",function (next){
     const user=this;
-
+    
     if(!user.isModified("password")) return ;
-
+    
     const hash = createHmac('sha256', secret)
-               .update(user.password)
-               .digest('hex');
+    .update(user.password)
+    .digest('hex');
+    
+        this.password=hash;
+        this.salt=secret;
 
-               this.password=hash;
-               this.salt=secret;
-
-               next();
+            next();
 })
-
+            
+            //static function in the schema to check the password is valid returns a boolean
+userschema.static("matchpassword",async function (email,password) {
+    const user=await this.findOne({email});
+                
+    if(!user ) return false;
+                
+    const givenpasswordHash = createHmac('sha256', secret)
+        .update(password)
+        .digest('hex');
+                
+    if(givenpasswordHash === user.password ) return {user};
+    else return false;
+                
+});
+            
+const usermodel= mongoose.model("user",userschema);
 module.exports=usermodel;
