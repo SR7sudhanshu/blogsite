@@ -36,7 +36,7 @@ const userschema=new mongoose.Schema({
 userschema.pre("save",function (next){
     const user=this;
     
-    if(!user.isModified("password")) return ;
+    if(!user.isModified("password")) {console.log("not modified password"); return ;}
     
     const hash = createHmac('sha256', secret)
     .update(user.password)
@@ -64,4 +64,5 @@ userschema.static("matchpassword",async function (email,password) {
 });
             
 const usermodel= mongoose.model("user",userschema);
+
 module.exports=usermodel;

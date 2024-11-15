@@ -1,7 +1,7 @@
 const usermodel=require("../models/user");
-const jwt=require("jsonwebtoken");
+const {createtokenforuser,checktoken}=require('../services/authentication')
 
-async function signinfunctionasync (req,res){
+async function signin (req,res){
     const {email, password}=req.body;
 
     const founduser=await usermodel.matchpassword(email,password);
@@ -11,15 +11,14 @@ async function signinfunctionasync (req,res){
     console.log(founduser);
     
     //adding token in cookie if the user is found
-    const token=jwt.sign(founduser,"SR7thegoat");
-    
+    const token=createtokenforuser(founduser);
     res.cookie("token", token);
 
     return res.redirect("/");
 }
 
-async function signupfunctionasync (req,res){
-    const {fullname , email,password}=req.body;
+async function signup (req,res){
+    const {fullname,email,password}=req.body;
     await usermodel.create({
         fullname,
         email,
@@ -29,6 +28,6 @@ async function signupfunctionasync (req,res){
 }
 
 module.exports={
-    signupfunctionasync,
-    signinfunctionasync
+    signin,
+    signup
 }

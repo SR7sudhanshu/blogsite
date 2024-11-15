@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup page</title>
+    <%- include('./partials/head') %>
 </head>
 <body><h1>sign up</h1>
     <h2>
         welcome to sr7blogs
     </h2>
-    <form action="/blog/signup" method="post">
-        <label for="fullname">enter fullname</label>
-        <input type="text" required name="fullname" id="fullname" placeholder="enter your fullname">
-<br>
-        <label for="email">enter email</label>
-        <input type="email" required name="email" id="email" placeholder="example@xyz.com">
-<br>
-        <label for="password">enter password</label>
-        <input type="password" name="password" id="password" required placeholder="enter password">
+    <form method="post" action="/blog/signup">
+        <div class="mb-3">
+          <label for="exampleInputName1" class="form-label">FULL NAME</label>
+          <input type="fullname" name="fullname" class="form-control" id="exampleInputEmail1" aria-describedby="fullnameHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+        </div>
+       
         <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+      </form>
+    <%- include("./partials/script") %>
 </body>
 </html>
