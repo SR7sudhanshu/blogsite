@@ -1,5 +1,5 @@
 const jwt=require("jsonwebtoken");
-
+const secret="SR7thegoat";
 function createtokenforuser(user){
     console.log("user for token",user);
     const payload={
@@ -9,13 +9,13 @@ function createtokenforuser(user){
         role : user.role,
     }
 
-    const token=jwt.sign(payload , "SR7thegoat");
+    const token=jwt.sign(payload ,secret);
 
     return token;
 }
 
 function checktoken(token){
-    const payload=jwt.verify(token,"Sr7thegoat");
+    const payload=jwt.verify(token,secret);
     return payload;
 }
 
