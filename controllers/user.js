@@ -6,7 +6,9 @@ async function signin (req,res){
 
     const founduser=await usermodel.matchpassword(email,password);
     
-    if(!founduser){ console.log("password was incorrect"); return res.redirect("/blog/signin");}
+    if(!founduser){ console.log("password was incorrect"); return res.render("signinpage",{
+        loginerror : "wrong password or email",
+    }) }
 
     console.log(founduser);
     

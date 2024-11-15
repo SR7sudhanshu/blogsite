@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signin</title>
     <%- include('./partials/head') %>
+    
 </head>
 <body>
   <h1>SIGN IN </h1>
+  
     <form method="post" action="/blog/signin">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -20,6 +22,9 @@
         </div>
        
         <button type="submit" class="btn btn-primary">Submit</button>
+        <% if (locals.loginerror) { %>
+         <h6 style="color: red;"><%= locals.loginerror %></h6>
+        <% } %>
       </form>
       <%- include("./partials/script") %>
 </body>
