@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog</title>
+    <%- include('./partials/head') %>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <div class="container" style="display: flex;">
+        <div class="phtot"  style="border-radius: 50%;">
+            <img src="<%= blog.createdBy.profilephotoURL %>" alt="" srcset="">
+        </div>
+        <p><%= blog.createdBy.fullname %></p>
+    </div>
+    <div class="container mt-3" >
+        <p><%= blog.title %></p>
+        <img src="<%= blog.coverImageURL %>" style="height: 200px; width: 400px;" alt="not found" srcset="">
+        <p><%= blog.body %></p>
+    </div>
+    <div class="mb-3">
+        <form action="/blog/dums/comment" method="post" >
+
+            <label for="body">Body</label>
+            <textarea name="body" class="form-control" id="body"></textarea>
+        </form>
+      </div>
+    <%- include('./partials/script') %>
+</body>
+</html>

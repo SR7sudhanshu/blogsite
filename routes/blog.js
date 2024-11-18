@@ -32,7 +32,7 @@ const storage = multer.diskStorage({
       createdBy: req.user._id,
       coverImageURL: `/uploads/${req.file.filename}`,
     });
-    return res.redirect("/dumps/blogs");
+    return res.redirect(`/dumps/blogs/${blog._id}`);
   });
 
   router.get("/blogs",async (req,res)=>{
@@ -43,5 +43,14 @@ const storage = multer.diskStorage({
         blogs : allblogs
       })
   })
+
+router.get("/blogs/:id",async(req,res)=>{
+    const blogofuser=await Blog.findById(req.params.id).populate('createdBy');
+    console.log("blogofuser",blogofuser);
+    res.render("blog",{
+      user : req.user,
+      blog : blogofuser,
+    })
+})  
 
 module.exports=router;

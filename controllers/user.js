@@ -10,7 +10,7 @@ async function signin (req,res){
         loginerror : "wrong password or email",
     }) }
 
-    console.log(founduser);
+    console.log("usr found in login page",founduser);
     
     //adding token in cookie if the user is found
     const token=createtokenforuser(founduser);
