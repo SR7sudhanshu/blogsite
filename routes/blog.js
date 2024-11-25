@@ -3,6 +3,7 @@ const router=express.Router();
 const multer = require("multer");
 const path = require("path");
 const Blog = require("../models/blog");
+const commentmodel=require("../models/comment");
 
 router.get("/add-new",(req,res)=>{
     res.render("addblog",{
@@ -45,12 +46,27 @@ const storage = multer.diskStorage({
   })
 
 router.get("/blogs/:id",async(req,res)=>{
+    const comments=await commentmodel.find({ commenton : req.params.id });
     const blogofuser=await Blog.findById(req.params.id).populate('createdBy');
     console.log("blogofuser",blogofuser);
     res.render("blog",{
       user : req.user,
       blog : blogofuser,
+      comments : comments,
     })
 })  
+router.post("/blogs/:id",async(req,res)=>{
+  const { comment } =req.body;
+  const user=req.user;
+  const blogID=req.params.id;
+  await commentmodel.create({
+    comment,
+    commentedby : user._id,
+    commenton : blogID,
+  })
+
+    res.end("your comment was added (checking the routes)");
+})
+
 
 module.exports=router;

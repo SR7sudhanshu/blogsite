@@ -9,10 +9,12 @@ const commentschema=new Schema({
     commentedby: {
         type : Schema.Types.ObjectId,
         ref : "user",
+        required : true,
     },
     commenton : {
         type : Schema.Types.ObjectId,
         ref : "blog",
+        required : true,
     }
 },{timestamps : true});
 

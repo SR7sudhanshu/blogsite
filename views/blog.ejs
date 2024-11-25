@@ -20,10 +20,11 @@
         <p><%= blog.body %></p>
     </div>
     <div class="mb-3">
-        <form action="/blog/dums/comment" method="post" >
+        <form action="/dumps/blogs/<%= blog._id %>" method="post" >
 
             <label for="body">Body</label>
-            <textarea name="body" class="form-control" id="body"></textarea>
+            <textarea name="comment" class="form-control" id="body"></textarea>
+            <button type="submit">post comment</button>
         </form>
       </div>
     <%- include('./partials/script') %>
