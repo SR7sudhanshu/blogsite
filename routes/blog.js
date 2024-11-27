@@ -46,7 +46,7 @@ const storage = multer.diskStorage({
   })
 
 router.get("/blogs/:id",async(req,res)=>{
-    const comments=await commentmodel.find({ commenton : req.params.id });
+    const comments=await commentmodel.find({ commenton : req.params.id }).populate('commentedby');
     const blogofuser=await Blog.findById(req.params.id).populate('createdBy');
     console.log("blogofuser",blogofuser);
     res.render("blog",{
@@ -65,7 +65,7 @@ router.post("/blogs/:id",async(req,res)=>{
     commenton : blogID,
   })
 
-    res.end("your comment was added (checking the routes)");
+    return res.redirect(`/dumps/blogs/${blogID}`);
 })
 
 
