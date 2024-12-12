@@ -21,8 +21,8 @@
                 <%= user.fullname %>
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">change profile photo</a></li>
-                <li><a class="dropdown-item" href="#">Log Out</a></li> 
+                <li><a class="dropdown-item" href="/account/profile">change profile photo</a></li>
+                <li><a class="dropdown-item" href="/blog/signin">Log Out</a></li> 
               </ul>
             </li>
           <% } else {%>
@@ -39,10 +39,15 @@
            
           
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <div class="user">
+          <% if (!locals.file) { %>
+            <a href="/account/profile">
+
+              <img style="height: 70px;" src="/images/default.png" alt="">
+            </a>
+            
+          <% } %>
+        </div>
       </div>
     </div>
   </nav>

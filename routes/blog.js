@@ -4,6 +4,7 @@ const multer = require("multer");
 const path = require("path");
 const Blog = require("../models/blog");
 const commentmodel=require("../models/comment");
+const {authorization}=require("../middlewares/authorization")
 
 router.get("/add-new",(req,res)=>{
     res.render("addblog",{
@@ -55,7 +56,7 @@ router.get("/blogs/:id",async(req,res)=>{
       comments : comments,
     })
 })  
-router.post("/blogs/:id",async(req,res)=>{
+router.post("/blogs/:id",authorization,async(req,res)=>{
   const { comment } =req.body;
   const user=req.user;
   const blogID=req.params.id;
@@ -67,6 +68,5 @@ router.post("/blogs/:id",async(req,res)=>{
 
     return res.redirect(`/dumps/blogs/${blogID}`);
 })
-
 
 module.exports=router;

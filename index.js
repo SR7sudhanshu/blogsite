@@ -7,7 +7,8 @@ const {connectDB}=require("./config/mongodbconnect");
 const {checkauthentication}=require("./middlewares/authentication");
 const cookieParser=require("cookie-parser");
 const blogrouter=require("./routes/blog");
-const {authorization}=require("./middlewares/authorization")
+const {authorization}=require("./middlewares/authorization");
+const useraccount=require("./routes/useraccount");
 
 //mongoose connection
 connectDB("mongodb://localhost:27017/blogusers");
@@ -35,6 +36,7 @@ app.get("/",(req,res)=>{
 //using routes
 app.use("/blog",staticrouter);
 app.use("/dumps",blogrouter);
+app.use("/",useraccount);
 
 
 app.listen(port,()=>{
