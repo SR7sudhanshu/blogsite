@@ -40,5 +40,5 @@ app.use("/",useraccount);
 
 
 app.listen(port,()=>{
-    console.log("server has started");
+    console.log("server is running");
 })
