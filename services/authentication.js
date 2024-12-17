@@ -1,5 +1,6 @@
+require('dotenv').config()
 const jwt=require("jsonwebtoken");
-const secret="SR7thegoat";
+
 function createtokenforuser(user){
     console.log("user for token",user);
     const payload={
@@ -9,13 +10,13 @@ function createtokenforuser(user){
         role : user.role,
     }
 
-    const token=jwt.sign(payload ,secret);
+    const token=jwt.sign(payload ,process.env.SECRET);
 
     return token;
 }
 
 function checktoken(token){
-    const payload=jwt.verify(token,secret);
+    const payload=jwt.verify(token,process.env.SECRET);
     return payload;
 }
 

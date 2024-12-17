@@ -1,3 +1,4 @@
+require('dotenv').config()
 const mongoose =require("mongoose");
 const { createHmac } = require('node:crypto');
 
@@ -38,12 +39,12 @@ userschema.pre("save",function (next){
     
     if(!user.isModified("password")) {console.log("not modified password"); return ;}
     
-    const hash = createHmac('sha256', secret)
+    const hash = createHmac('sha256', process.env.SECRET2)
     .update(this.password)
     .digest('hex');
     
         this.password=hash;
-        this.salt=secret;
+        this.salt=process.env.SECRET2;
 
             next();
 })
@@ -54,7 +55,7 @@ userschema.static("matchpassword",async function (email,password) {
                 
     if(!user ) return false;
                 
-    const givenpasswordHash = createHmac('sha256', secret)
+    const givenpasswordHash = createHmac('sha256', process.env.SECRET2)
         .update(password)
         .digest('hex');
                 

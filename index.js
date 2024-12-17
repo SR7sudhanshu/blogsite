@@ -1,8 +1,8 @@
+require('dotenv').config()
 const express=require("express");
 const app=express();
 const ejs=require("ejs");
 const path = require("path");
-const port=8000;
 const {connectDB}=require("./config/mongodbconnect");
 const {checkauthentication}=require("./middlewares/authentication");
 const cookieParser=require("cookie-parser");
@@ -11,7 +11,7 @@ const {authorization}=require("./middlewares/authorization");
 const useraccount=require("./routes/useraccount");
 
 //mongoose connection
-connectDB("mongodb://localhost:27017/blogusers");
+connectDB(process.env.MONGO_URL);
 
 //set ejs view enigne
 app.set("view engine","ejs");
@@ -40,6 +40,6 @@ app.use("/dumps",blogrouter);
 app.use("/",useraccount);
 
 
-app.listen(port,()=>{
+app.listen(process.env.PORT,()=>{
     console.log("server is running");
 })
