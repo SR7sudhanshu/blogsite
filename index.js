@@ -13,6 +13,7 @@ const useraccount=require("./routes/useraccount");
 //mongoose connection
 connectDB("mongodb://localhost:27017/blogusers");
 
+//set ejs view enigne
 app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
 

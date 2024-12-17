@@ -20,6 +20,8 @@
         <p><%= blog.body %></p>
     </div>
     <div class="mb-3">
+        <h5>comments(<%= comments.length %>)</h5>
+        <br>
         <form action="/dumps/blogs/<%= blog._id %>" method="post" >
 
             <label for="body">Body</label>
@@ -27,8 +29,8 @@
             <button type="submit">post comment</button>
         </form>
       </div>
-      <div class="mb-3">
-        <% if (comments) { %>
+      <div class="mt-3">
+        <% if (locals.comments) { %>
          <% comments.forEach(comment => { %>
           <p><%= comment.comment %></p> <span>commented by - <b><%= comment.commentedby.fullname %></b></span><br>
          <% }) %>

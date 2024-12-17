@@ -48,7 +48,7 @@ userschema.pre("save",function (next){
             next();
 })
             
-            //static function in the schema to check the password is valid returns a boolean
+//static function in the schema to check the password is valid returns a boolean
 userschema.static("matchpassword",async function (email,password) {
     const user=await this.findOne({email});
                 
