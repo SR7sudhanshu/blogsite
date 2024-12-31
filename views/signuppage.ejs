@@ -3,30 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signup page</title>
+    <title>Signup Page</title>
     <%- include('./partials/head') %>
+    <!-- Google Fonts for modern feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            opacity: 0;
+            animation: fadeInBody 1s forwards;
+        }
+
+        @keyframes fadeInBody {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #fff;
+            opacity: 0;
+            animation: slideInUp 1s forwards;
+            animation-delay: 0.3s;
+        }
+
+        h1 {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-weight: 400;
+            margin-top: 0;
+            color: #bbb;
+        }
+
+        @keyframes slideInUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        form {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .form-label {
+            color: #ddd;
+            font-weight: 500;
+        }
+
+        .form-control {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            width: 100%;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #6200ea;
+            box-shadow: 0 0 8px rgba(98, 0, 234, 0.5);
+            outline: none;
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .btn-primary {
+            background-color: #6200ea;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(98, 0, 234, 0.3);
+            width: 100%;
+            transform: translateY(0);
+            animation: fadeInUp 1s forwards;
+            animation-delay: 1s;
+        }
+
+        .btn-primary:hover {
+            background-color: #3700b3;
+            box-shadow: 0 6px 10px rgba(98, 0, 234, 0.5);
+            transform: translateY(-4px);
+        }
+
+        .form-text {
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
 </head>
-<body><h1>sign up</h1>
-    <h2>
-        welcome to sr7blogs
-    </h2>
-    <form method="post" action="/blog/signup">
-        <div class="mb-3">
-          <label for="exampleInputName1" class="form-label">FULL NAME</label>
-          <input type="fullname" name="fullname" class="form-control" id="exampleInputEmail1" aria-describedby="fullnameHelp">
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-        </div>
-       
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+<body>
+    <div>
+        <h1>Sign Up</h1>
+        <h2>Welcome to BLogGDumpS</h2>
+        <form method="post" action="/blog/signup">
+            <div class="mb-3">
+                <label for="exampleInputName1" class="form-label">Full Name</label>
+                <input required type="text" name="fullname" class="form-control" id="exampleInputName1" aria-describedby="fullnameHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email Address</label>
+                <input required type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input required type="password" name="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+  </form>
+    <form action="/blog/signin" method="get">
+      <p>if u have an account then u can login here</p>
+      <button class="btn btn-primary">Login</button>
+
     <%- include("./partials/script") %>
 </body>
 </html>
