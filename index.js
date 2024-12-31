@@ -9,6 +9,7 @@ const cookieParser=require("cookie-parser");
 const blogrouter=require("./routes/blog");
 const {authorization}=require("./middlewares/authorization");
 const useraccount=require("./routes/useraccount");
+const updateprofilepic=require("./routes/uploadprofilepic")
 
 //mongoose connection
 connectDB(process.env.MONGO_URL);
@@ -36,8 +37,9 @@ app.get("/",(req,res)=>{
 
 //using routes
 app.use("/blog",staticrouter);
-app.use("/dumps",blogrouter);
-app.use("/",useraccount);
+app.use("/dumps",blogrouter); 
+app.use("/account",authorization,useraccount); //viewing profile photo
+app.use("/account/upload",updateprofilepic);
 
 
 app.listen(process.env.PORT,()=>{
