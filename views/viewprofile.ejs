@@ -9,7 +9,12 @@
 <body>
     <%- include("./partials/nav") %>
    <div style="height: 500px;display: flex;">
-           <img  src="/images/default.png" class="figure-img img-fluid rounded" alt="...">          
+    <% if (locals.user) { %>
+     
+        <img  src="<%= user.profilephotoURL %>" alt="image could not be found" class="figure-img img-fluid rounded" >          
+    <% } else {%>
+        <img  src="/images/default.png" class="figure-img img-fluid rounded" alt="...">
+        <%}%>
     </div> 
     <a href="/account/upload">
         <button>upload new profile photo</button>

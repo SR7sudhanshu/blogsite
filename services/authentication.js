@@ -8,6 +8,7 @@ function createtokenforuser(user){
         fullname : user.fullname,
         email : user.email,
         role : user.role,
+        profilephotoURL : user.profilephotoURL,
     }
 
     const token=jwt.sign(payload ,process.env.SECRET);

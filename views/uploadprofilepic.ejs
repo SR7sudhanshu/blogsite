@@ -10,9 +10,9 @@
     <%- include("./partials/nav") %>
     <h1>upload your profile pic here</h1>
     <br><br><br>
-    <form action="/account/upload/">
+    <form action="/account/upload/" method="post" enctype="multipart/form-data">
 
-        <input type="file" name="profilepic" id="">
+        <input type="file" name="profilepic" required>
         <button type="submit">upload</button>
     </form>
     

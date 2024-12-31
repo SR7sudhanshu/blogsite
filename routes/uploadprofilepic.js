@@ -1,7 +1,8 @@
 const express=require("express");
 const router=express.Router();
-const multer=require('multer');
+const multer =require('multer');
 const usermodel = require("../models/user");
+const {authorization}=require("../middlewares/authorization");
 
 router.get("/",(req,res)=>{
     res.render("uploadprofilepic",{
@@ -12,10 +13,10 @@ router.get("/",(req,res)=>{
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, path.resolve(`./public/uploads/profilepic/`));
+      cb(null, `C:/Users/sudha/OneDrive/Desktop/coding/backend/nodejs/blogsite/public/uploads/profilepic`);
     },
     filename: function (req, file, cb) {
-      const fileName = `${Date.now()}-${file.originalname}-${Math.random()}`;
+      const fileName = `${Date.now()}-${file.originalname}`;
       cb(null, fileName);
     },
 });
@@ -23,10 +24,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-router.post("/", upload.single("profilepic"), async (req, res) => {
-    const user = await usermodel.findByIdAndUpdate(req.user._id,{ $set : {
-        profilephotoURL : `/uploads/${req.user._id}/${req.file.filename}`
-    }})
+router.post("/",authorization ,upload.single("profilepic"), async (req, res) => {
+    console.log(req.file);
+    await usermodel.findByIdAndUpdate(req.user._id,{
+        profilephotoURL : `/uploads/profilepic/${req.file.filename}`
+    })
+    console.log("photo uploaded");
     return res.redirect("/account/profile");
 });
 
