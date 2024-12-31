@@ -5,10 +5,221 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>homepage</title>
     <%- include('./partials/head') %>
+
+    <style>
+    /* Global Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(45deg, #1d2229, #161b22);
+      color: #fff;
+    }
+    span{
+        color : rgb(164, 159, 159)
+    }
+    h1, h2, h3 {
+      font-weight: 600;
+    }
+
+    .container-fluid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      background: transparent;
+      box-shadow: none;
+      padding: 15px 0;
+    }
+
+    .navbar-brand {
+      font-size: 32px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .navbar-nav .nav-link {
+      font-size: 18px;
+      margin-right: 30px;
+      transition: all 0.3s;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #0d6efd;
+      transform: translateY(-3px);
+    }
+
+    /* Hero Section Styles */
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #0f172a, #414346);
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 30px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #aaa;
+      margin-bottom: 50px;
+    }
+
+    .btn-custom {
+      padding: 15px 30px;
+      background: #0d6efd;
+      color: #fff;
+      border: none;
+      font-size: 18px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      transform: scale(1.1);
+      background: #0056b3;
+    }
+
+    /* 3D Card Effect */
+    .card-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 80px;
+      gap: 40px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 15px;
+      width: 300px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(103, 3, 75, 0.3);
+    }
+
+    .card img {
+      border-radius: 10px;
+      max-height: 200px;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 600;
+      color: #fff;
+      margin-top: 20px;
+    }
+
+    .card-text {
+      color: #ccc;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .card-footer .btn {
+      background: #0d6efd;
+      border: none;
+      color: #fff;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .card-footer .btn:hover {
+      transform: scale(1.1);
+    }
+  </style>
+
 </head>     
 <body>
     <%- include("./partials/nav") %>
-    <h1>homepage</h1>
+    <section class="hero">
+        <div>
+          <h1>Welcome to BLOGdumps</h1>
+          <p>Your one-stop destination for amazing blogs</p>
+          <a href="/dumps/blogs" class="btn-custom">Explore Blogs</a>
+        </div>
+      </section>
+    
+      <!-- Cards Section -->
+      <section class="card-container">
+        <div class="card">
+          <img src="https://via.placeholder.com/300x200" alt="Blog Image">
+          <div class="card-body">
+            <h5 class="card-title">How AI is Changing the World</h5>
+            <p class="card-text">A deep dive into the latest developments in Artificial Intelligence.</p>
+            <div class="card-footer">
+              <span>January 20, 2024</span>
+              <a href="/dumps/blogs" class="btn">Read More</a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="card">
+          <img src="https://via.placeholder.com/300x200" alt="Blog Image">
+          <div class="card-body">
+            <h5 class="card-title">Future of Web Development</h5>
+            <p class="card-text">What to expect in the next era of web technologies and frameworks.</p>
+            <div class="card-footer">
+              <span>February 10, 2024</span>
+              <a href="/dumps/blogs" class="btn">Read More</a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="card">
+          <img src="https://via.placeholder.com/300x200" alt="Blog Image">
+          <div class="card-body">
+            <h5 class="card-title">The Rise of Remote Work</h5>
+            <p class="card-text">Insights into the world of remote work and how it's changing the workforce.</p>
+            <div class="card-footer">
+              <span>March 5, 2024</span>
+              <a href="/dumps/blogs" class="btn">Read More</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- Scripts -->
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybB4kpx8fSje3bWuy9oxYzq3U6snlC2r7np5q5knyv5r9DkK1g" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0fYXp1N0a6d8cP5V+nD3n4S2oDw4v5Pp6lFklKxI14JkBBFV" crossorigin="anonymous"></script>
+    </body>
+    </html>
     <%- include("./partials/script") %>
 </body>
 </html>

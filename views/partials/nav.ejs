@@ -1,58 +1,116 @@
-<nav class="navbar navbar-expand-lg bg-transparent">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">BLOGdumps</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/dumps/blogs">Blogs</a>
-          </li>
-          <% if (locals.user) { %>
-            <li class="nav-item">
-              <a class="nav-link" href="/dumps/add-new">Add Blog</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <%= user.fullname %>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/account/profile">change profile photo</a></li>
-                <li><a class="dropdown-item" href="/blog/signin">Log Out</a></li> 
-              </ul>
-            </li>
-          <% } else {%>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                register here
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/blog/signup">SIGN UP</a></li>
-                <li><a class="dropdown-item" href="/blog/signin">LOG IN</a></li> 
-              </ul>
-            </li>
-            <% }%>  
-           
-          
-        </ul>
-        <div class="user" style="border-radius: 50%;object-fit: cover; overflow: hidden;">
-          <% if (locals.user) { %>
-            <a href="/account/profile">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fs-5 shadow-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand text-light" href="/">BLOGdumps</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-light active-link" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/dumps/blogs">Blogs</a>
+        </li>
 
-              <img style="height: 70px;" src="<%= user.profilephotoURL %>" alt="image could not be found">
+        <% if (locals.user) { %>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="/dumps/add-new">Add Blog</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= user.fullname %>
             </a>
-            
-          <% } else {%>
-            <a href="/account/profile">
-
-              <img style="height: 70px;" src="/images/default.png" alt="">
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/account/profile">Change Profile Photo</a></li>
+              <li><a class="dropdown-item" href="/blog/signin">Log Out</a></li> 
+            </ul>
+          </li>
+        <% } else {%>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Register Here
             </a>
-            <% } %>
-        </div>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/blog/signup">Sign Up</a></li>
+              <li><a class="dropdown-item" href="/blog/signin">Log In</a></li> 
+            </ul>
+          </li>
+        <% }%>   
+      </ul>
+      <div class="user d-flex align-items-center">
+        <% if (locals.user) { %>
+          <a href="/account/profile">
+            <img class="rounded-circle profile-img" style="height: 45px; width: 45px;" src="<%= user.profilephotoURL %>" alt="Profile Photo">
+          </a>
+        <% } else {%>
+          <a href="/account/profile">
+            <img class="rounded-circle profile-img" style="height: 45px; width: 45px;" src="/images/default.png" alt="Default Profile Photo">
+          </a>
+        <% } %>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
+
+<!-- Add custom CSS for cool and modern styling -->
+<style>
+  /* Navbar background with gradient */
+  .navbar {
+    background: linear-gradient(45deg, #2d3436, #636e72);
+  }
+
+  /* Hover effect for nav links */
+  .navbar-nav .nav-link {
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #0d6efd;
+    transform: translateY(-3px);
+  }
+
+  /* Active link style */
+  .navbar-nav .nav-link.active-link {
+    color: #ff6f61;
+    font-weight: bold;
+  }
+
+  /* Dropdown menu custom background */
+  .dropdown-menu {
+    background-color: #2d3436;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Dropdown item hover effect */
+  .dropdown-item:hover {
+    background-color: #37424b;
+  }
+
+  /* Profile image glowing border on hover */
+  .profile-img {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .profile-img:hover {
+    border: 2px solid #0d6efd;
+    box-shadow: 0 0 8px #0d6efd;
+  }
+
+  /* Smooth transition for navbar toggler icon */
+  .navbar-toggler-icon {
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+  }
+
+  .navbar-toggler-icon:hover {
+    background-color: #ff6f61;
+  }
+
+  /* Add shadow to navbar for depth */
+  .navbar.shadow-lg {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+</style>
