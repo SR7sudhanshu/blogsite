@@ -29,8 +29,7 @@ router.post("/",authorization ,upload.single("profilepic"), async (req, res) => 
     await usermodel.findByIdAndUpdate(req.user._id,{
         profilephotoURL : `/uploads/profilepic/${req.file.filename}`
     })
-    console.log("photo uploaded");
-    return res.redirect("/account/profile");
+     res.redirect("/account/profile");
 });
 
 

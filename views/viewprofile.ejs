@@ -3,22 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>User Profile</title>
     <%- include('./partials/head') %>
+    <style>
+        body {
+            background-color: #111827;
+            font-family: 'Arial', sans-serif;
+            color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background: #1f2937;
+            transform: translateY(20px);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: translateY(0px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .container img {
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background-color: #45a049;
+        }
+
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+
+        .upload-container {
+            margin-top: 20px;
+        }
+
+    </style>
 </head>
 <body>
     <%- include("./partials/nav") %>
-   <div style="height: 500px;display: flex;">
-    <% if (locals.user) { %>
-     
-        <img  src="<%= user.profilephotoURL %>" alt="image could not be found" class="figure-img img-fluid rounded" >          
-    <% } else {%>
-        <img  src="/images/default.png" class="figure-img img-fluid rounded" alt="...">
-        <%}%>
-    </div> 
-    <a href="/account/upload">
-        <button>upload new profile photo</button>
-    </a>
+
+    <div class="container">
+        <div style="height: 500px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <% if (locals.user) { %>
+                <img src="<%= user.profilephotoURL %>" alt="image could not be found" class="figure-img img-fluid rounded">
+            <% } else { %>
+                <img src="/images/default.png" class="figure-img img-fluid rounded" alt="...">
+            <% } %>
+        </div>
+
+        <div class="upload-container">
+            <a href="/account/upload">
+                <button>Upload New Profile Photo</button>
+            </a>
+        </div>
+    </div>
+
     <%- include("./partials/script") %>
 </body>
 </html>
