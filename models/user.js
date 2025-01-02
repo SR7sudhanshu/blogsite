@@ -2,7 +2,6 @@ require('dotenv').config()
 const mongoose =require("mongoose");
 const { createHmac } = require('node:crypto');
 
-const secret="SR7blogs";  //hardcoding secret is a bad practice never do this (forecfully krna pd rha h)
 
 const userschema=new mongoose.Schema({
     fullname : {
